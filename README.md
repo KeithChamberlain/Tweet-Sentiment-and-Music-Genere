@@ -1,5 +1,5 @@
 # Tweet Sentiment and Music Genere
-An analysis of tweet sentiment related to music genre
+An analysis of tweet sentiment related to music genre, and perhaps the first to detect the demise of K-Pop!
 
 ## The Original Study
 Onbuy.com performed a [study](https://www.onbuy.com/gb/blog/language-study-reveals-the-happiest-music-fans~a421/) of the most popular subreddits for each of 27 genres of music to find the "happiest music fans". The company analyzed the genres with more than 20,000 members and performed [Positive Words Research](https://positivewordsresearch.com/top-positive-words-emotions-used-these-days-on-social-media/) for the 15 most commonly used positive words on Reddit. They then searched for the words in the subreddits over the last year of the study and summed the positive mentions per 100 comments. Using these frequencies, Onbuy.com compiled a list of the -so called- "happiest" genres. The top ten genres, according to the author's frequencies, in order, are as follows:
@@ -163,10 +163,10 @@ As stated earler, the proportions are to be calcualted by n positive sentiment t
 
 ## Table 1: 
 <p align="center">
-    <img src="/Img/GenreTable1.png" width="500" height="500" />
+    <img src="/Img/GenreTable1.jpg" width="500" height="500" />
 </p>
 <p align="center">
-    <img src="Img/GenreChart1.pdf" width="500" height="400" />
+    <img src="Img/GenreChart1.jpg" width="500" height="400" />
 </p>
 
 
