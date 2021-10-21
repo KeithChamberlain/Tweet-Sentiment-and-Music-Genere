@@ -162,4 +162,12 @@ Just by regression to the mean, I make the following, specific, predictions:
 As stated earler, the proportions are to be calcualted by n positive sentiment tweets per genere / total tweets and normalized to 100. (positive tweets in genre/total tweets) * 100. Since only the tweets that have one genre mention are used, the total for each genre sums to the total tweets used. 
 
 ## Table 1: 
-<img src="/Img/GenreTable1.png" data-canonical-src="/Img/GenreTable1.png" width="300" height="300" />
+<p align="center">
+    <img src="/Img/GenreTable1.png" width="500" height="500" />
+</p>
+<p align="center">
+    <img src="Img/GenreChart1.pdf" width="500" height="400" />
+</p>
+
+
+
