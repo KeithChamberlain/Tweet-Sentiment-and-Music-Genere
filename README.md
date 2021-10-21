@@ -16,7 +16,7 @@ Onbuy.com performed a [study](https://www.onbuy.com/gb/blog/language-study-revea
   1. Classical
   - Etc.
 
-The publication resulted in a flurry of other articles for famous genres each claiming bragging rights. For example, DJMag.com published a news article entitled "[Trance fans among the happiest music listeners, new study finds](https://djmag.com/news/trance-fans-amongst-happiest-music-listeners-new-study-finds)". Of course, that title is not "really" what the study found. Trance had the 7th highest frequency of the top 15 most used positive words on Reddit, for whatever reason... one of which may be because of opinion. The author's of the Onbuy study undoubtedly knew of the limitations of thier interpretability, which is why they quietly clarified that happiest music fans meant "The music fans that used the most positive language online" according to their protocol (Paragraph 3).
+The publication resulted in a flurry of other articles for famous genres each claiming bragging rights. For example, DJMag.com published a news article entitled "[Trance fans among the happiest music listeners, new study finds](https://djmag.com/news/trance-fans-amongst-happiest-music-listeners-new-study-finds)". Of course, that title is not "really" what the study found. Trance had the 7th highest frequency of the top 15 most used positive words on Reddit, for whatever reason... one of which may be because of opinion. The authors of the Onbuy study undoubtedly knew of the limitations of their interpretability, which is why they quietly clarified that happiest music fans meant "The music fans that used the most positive language online" according to their protocol (Paragraph 3).
 
 ## Limitations of Onbuy.com's study
 
@@ -26,7 +26,7 @@ Onbuy.com did not discuss the limitations of their study, though there is no ind
 
 The first major limitation is that happiness is an emotion, and sentiment does not *necessarily* relate to emotion. Instead, sentiment relates to opinions. I may have an opinion that popcorn is fantastic, write that on a message board or tweet, yet at the same time have an overall depressed affect, without any real dissonance to speak of. So to say that sentiment analysis, or even positive words research, reveals the "happiest music listeners" could be missleading. As stated earlier, Onbuy carefully crafted their message.
 
-Even as a measure of opinions, there are problems related to humor, irony and subtleties in changing meanings related to emoticons and context that sentiment analysis is still likely to generate errors (Sidney, Loki, Nanjira, 2016, p. 3). If "holly crap!" is not explicitly listed in a dictionary based sentiment analysis, or supervised and unsupervised methods have not learned that particular word-combination case, the procedures are likely to get the sentiment of "crap," by itself, wrong, to use Sidney, Loki, and Nanjira's (2016, p. 3) example. 
+Even as a measure of opinions, there are problems related to humor, irony and subtleties in changing meanings related to emoticons and context that sentiment analysis is still likely to generate errors (Sidney, Loki, Nanjira, 2016, p. 3). If "holly crap!" is not explicitly listed in a dictionary-based sentiment analysis or supervised and unsupervised methods have not learned that particular word-combination case, the procedures are likely to get the sentiment of "crap," by itself, wrong, to use Sidney, Loki, and Nanjira's (2016, p. 3) example. In the one-word case, the sentiment is negative, however, in the multiple word case, the sentiment is positive!
 
 ### Limitations Related to Positive Words Research
 
@@ -34,7 +34,7 @@ Additionally, the authors used 15 of the most used positive words to establish t
 
 ### Limitations of Generalization
 
-This author disagrees with Onbuy's generalization of data to the population of music listeners. Social scientists know the subtleties of populations. Reddit users may be fundamentally different from other social media platform users by important demographic factors, and therefore may not be generalized to the population. At best, a study of Reddit users tells us only of other Reddit users, on average, and not about specific reddit users.
+This author disagrees with Onbuy's generalization of data to the population of music listeners. Social scientists study the subtleties of populations. Reddit users may be fundamentally different from other social media platform users by important demographic factors, and therefore may not be generalized to the population. At best, a study of Reddit users tells us only of other Reddit users, on average.
 
 # Literature Review
 
@@ -144,7 +144,7 @@ In EDA, there were some more details realized...
   1. The genre list needed to be changed to a regular expression list for finding text inside the tweet text. For example, multiple spellings in data existed for k-pop, but that needed to be separate from the other genre "pop", using negation "[^k-]pop(\W|\s)". Using regular expressions: '[^k-]pop(\W|\s)'.
   1. Many of the tweets that mentioned one genre also mentioned another genre. While this brings up interesting questions about the properties of tweets that mention multiple genres, these tweets are not related to the question of interest and are therefore excluded.
   1. The exploratory code was revamped in order to identify counts of genres associated with each tweet. 
-  1. Once I realized there were, in fact, tweets that mentioned only one genre, code was developed to issolate just those tweets. This results in a list of 14,579 unique and independent tweets.
+  1. Once I realized there were, in fact, tweets that mentioned only one genre, code was developed to isolate just those tweets. This results in a list of 14,579 unique and independent tweets.
   1. There was still only **two** 'r&amp;b|rnb|randb' records found for the remaining 14,579 tweets. Once the regular expression for R&B was expanded to the following, results made more sense for R&B: `'r amp b|r&amp;b|rnb|randb|r b(\W|\s)'`, as it was discovered in perusing the raw tweets that the "&" and ";" symbols were removed during cleaning. This was an unanticipated side effect of the cleaning routines that was easily accounted for. Once corrected, with a proper regex, counts were normal.
 
 # Updated Business Question
@@ -153,21 +153,43 @@ Do we reach similar conclusion to the Onbuy.com study using sentiment data for T
 
 Just by regression to the mean, I make the following, specific, predictions:
 
-  - H0: Jazz will not be regarded as highly as it was in the Onbuy study. Specifically, Jazz will not be found in the top 10, and will be replaced by R&B.
-  - H0: Trance will not be regarded as highly as it was in the Onbuy study. Specifically, Trance will not be found in the top 10 and will be replaced by Pop.
-  - H0: Opera will not be regarded as highly as it was in the Onbuy study. Specificaly, Opera will not be found in the top 10 and will be replaced by EDM.
+  - Jazz will not be regarded as highly as it was in the Onbuy study. Specifically, Jazz will not be found in the top 10, and will be replaced by R&B.
+  - Trance will not be regarded as highly as it was in the Onbuy study. Specifically, Trance will not be found in the top 10 and will be replaced by Pop.
+  - Opera will not be regarded as highly as it was in the Onbuy study. Specifically, Opera will not be found in the top 10 and will be replaced by EDM.
 
 ## Results
 
-As stated earler, the proportions are to be calcualted by n positive sentiment tweets per genere / total tweets and normalized to 100. (positive tweets in genre/total tweets) * 100. Since only the tweets that have one genre mention are used, the total for each genre sums to the total tweets used. 
+As stated earler, the proportions are to be calculated by n positive sentiment tweets per genere / total tweets and normalized to 100. (positive tweets in genre/total tweets) * 100. Since only the tweets that have one genre mention are used, the total for each genre sums to the total tweets used. 
 
 ## Table 1: 
+
 <p align="center">
     <img src="/Img/GenreTable1.jpg" width="500" height="500" />
 </p>
+
+## Chart 1:
+
 <p align="center">
-    <img src="Img/GenreChart1.jpg" width="500" height="400" />
+    <img src="Img/GenreChart1.jpg" width="600" height="400" />
 </p>
 
+Country tops this chart, followed by House and Classical. 
 
+  - While Jazz is not apparent at the very top of the chart, it certainly is still in the top 10, landing at 6, and its first position was replaced by Country - breaking the second and third parts of the first prediction. 
+  - Trance is not regarded as highly as it was in the Onbuy study. Trance is not in the top 10, but it was replaced by Rock, not Pop. 
+  - Opera is not regarded as highly as it was in the Onbuy study. Opera is not in the top 10. Opera was replaced instead in this study by Classical, not the predicted EDM.
+  
+  Thus 5:4 is the prediction score, just better than half of the predictions were correct. The more general predictions based on regression to the mean were accurate, along with 2/3 of the "no longer in the top 10" predictions, however, the specific predictions were left wanting.
 
+Last on the chart, and unanticipated, is the position of K-Pop. Does this result predict the demise of the K-Pop genre now that so few on Twitter are talking about K-Pop in tweets that just reference the genre in isolation of the other genres? Or is this finding an artifact of regular expressions used not picking up the difference between "k-pop" or "k pop" or "kpop" versus "pop" alone? I'll keep the possibility in the back of my mind for both outcomes, however, the k-pop finding was not an a-priori question so would need to be investigated separately.
+
+# Discussion
+
+There are four main reasons the Onbuy results did not coincide with the results here.
+
+  1. Both studies are single sample studies with unknown variance. This one only has a span of 2 weeks, while the Onbuy study has a span of a year. We do not know how much the charts fluctuate from sample to sample.
+  1. The studies were undertaken on different social media platforms, which limit their generalizability to results we could expect from people on other social media.
+  1. The Onbuy results, and the results here, may be limited to a specific time-span. It may be that the number 15 so-called "happiest" rated K-Pop from the Onbuy study is now waning at this specific time-point due to factors such as popularity. The findings here are not a blow to Onbuy's methods for the next reason.
+  1. We must keep in mind that the methods between this study and Onbuy's study are different.
+
+One response to the disparity in study results is to write Onbuy and get their bag of words and analyze these data according to their methods to search for disparities based on methods.
