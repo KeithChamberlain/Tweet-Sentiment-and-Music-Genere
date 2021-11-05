@@ -26,11 +26,11 @@ Onbuy.com did not discuss the limitations of their study, though there is no ind
 
 The first major limitation is that happiness is an emotion, and sentiment does not *necessarily* relate to emotion. Instead, sentiment relates to opinions. I may have an opinion that popcorn is fantastic, write that on a message board or tweet, yet at the same time have an overall depressed affect, without any real dissonance to speak of. So to say that sentiment analysis, or even positive words research, reveals the "happiest music listeners" could be missleading. As stated earlier, Onbuy carefully crafted their message.
 
-Even as a measure of opinions, there are problems related to humor, irony and subtleties in changing meanings related to emoticons and context that sentiment analysis is still likely to generate errors (Sidney, Loki, Nanjira, 2016, p. 3). If "holly crap!" is not explicitly listed in a dictionary-based sentiment analysis or supervised and unsupervised methods have not learned that particular word-combination case, the procedures are likely to get the sentiment of "crap," by itself, wrong, to use Sidney, Loki, and Nanjira's (2016, p. 3) example. In the one-word case, the sentiment is negative, however, in the multiple word case, the sentiment is positive!
+Even as a measure of opinions, there are problems related to humor, irony and subtleties in changing meanings related to emoticons and context that sentiment analysis is still likely to generate errors (Sidney, Loki, Nanjira, 2016, p. 3). If "holly crap!" is not explicitly listed in a dictionary-based sentiment analysis or supervised and unsupervised methods have not learned that particular word-combination case, the procedures are likely to get the sentiment of "crap," by itself, wrong, to use Sidney, Loki, and Nanjira's (2016, p. 3) example. In the one-word case, the sentiment is negative, however, in the multiple word case, the sentiment is positive! The analysis I present is subject to this criticism as well.
 
 ### Limitations Related to Positive Words Research
 
-Additionally, the authors used 15 of the most used positive words to establish their sentiment scores. This is akin to a dictionary-based method based on just 15 words, and not word combinations. The benefit of such a tactic is that a single sentence could carry more than one positive word, and this gives a way to quantify all of them at once. However, there may have been a database of over 2M Reddit comments, or 2M chances to miss represent the sentiment of the single word based on context, humor, irony and emoticon. Based on other words in the comments, an overall comment score using a full-blown sentiment analysis may be negative overall, even though the positive word was found.
+Additionally, the authors used 15 of the most used positive words to establish their sentiment scores. This is akin to a dictionary-based NLP method based on just 15 words, and not word combinations. The benefit of such a tactic is that a single sentence could carry more than one positive word, and this gives a way to quantify all of them at once. However, there may have been a database of over 2M Reddit comments, or 2M chances to miss represent the sentiment of the single word based on context, humor, irony and emoticon. Based on other words in the comments, an overall comment score using a full-blown sentiment analysis may be negative overall, even though the positive word was found.
 
 ### Limitations of Generalization
 
@@ -106,7 +106,7 @@ def main(df, df2):
         'grime','drill'])
     genres = rng.choice(g, size=g.shape[0], replace=False)
 
-    # Note: The query: had to be on one line with no new lines to prevent errors. New lines are
+    # Note: The query had to be on one line with no new lines to prevent errors. New lines are
     # added here for ease of viewing. 
     for genre in genres:
             time.sleep(60*8) # Keep under API ask limits.
@@ -141,7 +141,7 @@ Collected 60,400+ tweets over the 2 weeks using the API. Some ads and retweets s
 
 In EDA, there were some more details realized...
 
-  1. The genre list needed to be changed to a regular expression list for finding text inside the tweet text. For example, multiple spellings in data existed for k-pop, but that needed to be separate from the other genre "pop", using negation "[^k-]pop(\W|\s)". Using regular expressions: '[^k-]pop(\W|\s)'.
+  1. The genre list needed to be changed to a regular expression list for finding text inside the tweet text. For example, multiple spellings in data existed for k-pop, but that needed to be separate from the other genre "pop", using negation. Using regular expressions: '[^k-]pop(\W|\s)'.
   1. Many of the tweets that mentioned one genre also mentioned another genre. While this brings up interesting questions about the properties of tweets that mention multiple genres, these tweets are not related to the question of interest and are therefore excluded.
   1. The exploratory code was revamped in order to identify counts of genres associated with each tweet. 
   1. Once I realized there were, in fact, tweets that mentioned only one genre, code was developed to isolate just those tweets. This results in a list of 14,579 unique and independent tweets.
@@ -159,7 +159,7 @@ Just by regression to the mean, I make the following, specific, predictions:
 
 ## Results
 
-As stated earler, the proportions are to be calculated by n positive sentiment tweets per genere / total tweets and normalized to 100. (positive tweets in genre/total tweets) * 100. Since only the tweets that have one genre mention are used, the total for each genre sums to the total tweets used. 
+As stated earlier, the proportions are to be calculated by n positive sentiment tweets per genere / total tweets and normalized to 100. (positive tweets in genre/total tweets) * 100. Since only the tweets that have one genre mention are used, the total for each genre sums to the total tweets used. 
 
 ## Table 1: 
 
@@ -187,9 +187,24 @@ Last on the chart, and unanticipated, is the position of K-Pop. Does this result
 
 There are four main reasons the Onbuy results did not coincide with the results here.
 
-  1. Both studies are single sample studies with unknown variance. This one only has a span of 2 weeks, while the Onbuy study has a span of a year. We do not know how much the charts fluctuate from sample to sample.
+  1. Both studies are single sample studies with unknown population variance. This one only has a span of 2 weeks, while the Onbuy study has a span of a year. We do not know how much the charts fluctuate from sample to sample.
   1. The studies were undertaken on different social media platforms, which limit their generalizability to results we could expect from people on other social media.
-  1. The Onbuy results, and the results here, may be limited to a specific time-span. It may be that the number 15 so-called "happiest" rated K-Pop from the Onbuy study is now waning at this specific time-point due to factors such as popularity. The findings here are not a blow to Onbuy's methods for the next reason.
-  1. We must keep in mind that the methods between this study and Onbuy's study are different.
+  1. The Onbuy results, and the results here, may be limited to a specific timespan. It may be that the number 15 so-called "happiest" rated K-Pop from the Onbuy study is now waning at this specific time-point due to factors such as popularity. The findings here are not a blow to Onbuy's methods for the next reason.
+  1. We must keep in mind that the methods between this study and Onbuy's study are different. The Onbuy team used the frequencies from a bag of 15 of the most frequent positive words on Reddit, while I used sentiment scores of whole tweets. Some pros and cons of each method were discussed in the Limitations section. 
 
-One response to the disparity in study results is to write Onbuy and get their bag of words and analyze these data according to their methods to search for disparities based on methods.
+One response to the disparity in study results is to write Onbuy and get their bag of words and reanalyze these data. 
+
+Keep in mind Onbuy is under no obligation to respond. One reason they might anyway is to support a preliminary attempt to reproduce their work appropriately on another social media platform, which might promote future research on the topic. 
+
+Another reason is that their data science team may see an opportunity to correct statements I made in a 'pay it forward' fashion, improving the visibility of their article and derivative works based on that article. For example, the methods used may be more solid than I gave credit for here, and the Onbuy team would have a chance to bring that to their readers attention by providing reference works in response that I can further provide here. 
+
+## Possible Future Directions
+
+Future directions may include:
+
+  1. Generating predictions based on classification models. Particularly, I am interested in using methods that depend on calibration as well as metrics for the practice.
+  1. Reviewing the literature to see if anyone else has already assessed a 15 most frequent positive words list in tweets in 2021, to see if the next step is necessary:
+  1. Generating a list of 15 most positive words used in Tweets in 2021 to:
+  1. Reproduce Onbuy's methods on these data with a bag of words for positive words research specific to Twitter. 
+  1. Getting Onbuy's list of positive words to see how well they apply to other social media.
+
