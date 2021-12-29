@@ -127,3 +127,14 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Objects
+*.obj
+
+# Data
+*.csv
+
+# Data file
+data/*.*
+data/*
+data
