@@ -23,11 +23,13 @@ class GetGenreTweet2_0:
                  # To set your environment variables in your terminal run the following line:
                  # export 'BEARER_TOKEN'=''
                  bearer_token = None,
-                 genres = np.array(['jazz','metal','opera','folk','indie','rock','trance','blues',
-                    'grunge', 'classical','funk','emo','reggae','country','k-pop','pop','techno','kpop',
+                 genres = np.array(['jazz', 'metal','punk','opera', 'folk', 'indie', 'rock', 'trance',
+                    'blues', 'grunge', 'classical','funk','emo','reggae','country','western','c&amp;w', 
+                    'c-w', 'cw', 'c and w', 'candw', 'k-pop','k pop', 'pop','techno','kpop', 'westren',
                     'edm','electronic','electronica','randb','rnb','r&amp;b','house','hip hop','hiphop',
-                    'hip-hop', 'punk','dubstep','rap','drum and bass', 'dnb','drumnbass','drum&amp;bass',
-                    'grime','drill', 'k pop', 'r and b', 'd&amp;b']),
+                    'hip-hop','dubstep','rap','drum and bass', 'dnb','drumnbass','drum&amp;bass',
+                    'grime','drill',  'r and b', 'r n b', 'd&amp;b', 'dandb', 'dubz', 'dubs', 'dub',
+                    'dub-step', 'r-n-b', 'dandb', 'd-and-b', 'drum-and-bass']),
                  # Optional params: start_time,end_time,since_id,until_id,max_results,next_token,
                  # expansions,tweet.fields,media.fields,poll.fields,place.fields,user.fields
                  maxresults = 80,
@@ -139,9 +141,10 @@ class GetGenreTweet2_0:
                     print(self.df.tail(5)['id'])
                     print("\n\n")
                     print(self.query_params)
-                    print("\n\n\n\n")
+                    print("\n\n\n")
                 except:
-                    print("\tError - Skipped")
+                    print(f"\tError - Skipped: {self.genre}")
+                    print("\n\n\n")
                     pass
                 time.sleep(minutes_between*60)
         return None
@@ -189,6 +192,7 @@ if __name__ == "__main__":
     t2_02.set_data(type="genres", data="trance")
     t2_02.print_data("genres")
 
+    # Test collecting a bunch from the API 2.0
     t2_0.get(60_000, 1, 80 * t2_0.genres.shape[0], 80, 4)
 
 
