@@ -106,22 +106,21 @@ class GetGenreTweet2_0:
         self.df2 = df2
         return None
 
-    def get(self, max_records_for_df, save_interrupt = 1, n_requests = 50, maxresults = 80, minutes_between = 4):
+    def get(self, max_records_for_df, maxresults = 80, minutes_between = 4):
         # Initialize df
         self.maxresults = maxresults
         self.read_previous()
         saver = 0
         while (self.df.shape[0] <= max_records_for_df) & (self.df.shape[0] > 0):
-            self.get_tweets(n_requests, minutes_between)
-            if self.df.shape[0] % save_interrupt*int(n_requests/self.maxresults) == 0:
-                self.df.to_csv(self.filepath+"."+str(saver), sep=",", compression="gzip", index=False)
-                self.df2.to_csv(self.filepathmeta+"."+str(saver), sep=",", compression="gzip", index=False)
-                saver+=1      
+            self.get_tweets( minutes_between)
+            self.df.to_csv(self.filepath+"."+str(saver), sep=",", compression="gzip", index=False)
+            self.df2.to_csv(self.filepathmeta+"."+str(saver), sep=",", compression="gzip", index=False)
+            saver+=1      
         self.df.to_csv(self.filepath, sep=",", compression="gzip", index=False)
         self.df2.to_csv(self.filepathmeta, sep=",", compression="gzip", index=False)
 
 
-    def get_tweets(self, n_requests, minutes_between):
+    def get_tweets(self, minutes_between):
         '''
         Get_tweets is the low level workhorse function. It re-randomizes every time
         get_tweets is called, then loops through the range of requests, trying each set.
@@ -129,24 +128,26 @@ class GetGenreTweet2_0:
         self.rng = Generator(PCG64(seed=None))
         self.randomized_genres = self.rng.choice(self.genres, size=self.genres.shape[0], replace=False)
         len_genres = self.randomized_genres.shape[0]
-        for record in range(int(n_requests/len_genres)):
-            for self.genre in self.randomized_genres:
-                self.query_params = self.return_query()
+        genre_count = 0
+        for self.genre in self.randomized_genres:
+            self.query_params = self.return_query()
 
-                json_response = self.connect_to_endpoint()
-                try:
-                    self.df = self.df.append(pd.json_normalize(json_response['data']))
-                    self.df2 = self.df2.append(pd.json_normalize(json_response['meta']))
-                    print(f"New Data: {self.genre}")
-                    print(self.df.tail(5)['id'])
-                    print("\n\n")
-                    print(self.query_params)
-                    print("\n\n\n")
-                except:
-                    print(f"\tError - Skipped: {self.genre}")
-                    print("\n\n\n")
-                    pass
-                time.sleep(minutes_between*60)
+            json_response = self.connect_to_endpoint()
+            try:
+                self.df = self.df.append(pd.json_normalize(json_response['data']))
+                self.df2 = self.df2.append(pd.json_normalize(json_response['meta']))
+                print(f"New Data: {self.genre}")
+                print(self.df.tail(5)['id'])
+                print("\n\n")
+                print(self.query_params)
+                print("\n\n\n")
+            except:
+                print(f"\tError - Skipped: {self.genre}")
+                print("\n\n\n")
+                pass
+            genre_count +=1
+            print(f"There are {len_genres-genre_count} genres left in {len_genres} total 'genres' until save.\n")
+            time.sleep(minutes_between*60)
         return None
 
     def print_data(self, type=["query","tail","head", "genres"], data=['id','text']):
@@ -181,7 +182,8 @@ class GetGenreTweet2_0:
 if __name__ == "__main__":
     # Test get on small sample then pickle
     t2_0 = GetGenreTweet2_0(filepath="new.csv", filepathmeta="newmeta.csv")
-    t2_0.get(1, 1, 1, 80, 4)
+    t2_0.get(1, 80, 4)
+    
     file_obj_w = open("t2_0.obj", "wb")
     pickle.dump(t2_0, file_obj_w, protocol=4)
     
@@ -193,6 +195,5 @@ if __name__ == "__main__":
     t2_02.print_data("genres")
 
     # Test collecting a bunch from the API 2.0
-    t2_0.get(60_000, 1, 80 * t2_0.genres.shape[0], 80, 4)
-
+    t2_0.get(60_000, 80, 4)
 
