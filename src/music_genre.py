@@ -290,17 +290,16 @@ if __name__ == "__main__":
         'dubstep|dub step|dubs|dub|dubz(\W|\s)','rap(\W|\s)',
         'drum and bass|drumnbass|dnb|drum amp bass|d amp b|d b|d n b|drumandbass|dandb|drum n bass(\W|\s)',
         'grime(\W|\s)','drill(\W|\s)'])
-    filepath = "tweet27.csv"
+    filepath = "new.csv.17"
     filepathmeta = None
     exclude_re = "RT|out now|outnow|exclusive|new release|newrelease|now playing|nowplaying|official|COMMERCIAL &amp; TALK FREE"
     
     # Instantiate Object
     # Stemming appears to be broken
-    data_obj = TweetGenreList(filepath, filepathmeta, genre_list, exclude_re, type="stem", lang = 'langdetect')
+    data_obj = TweetGenreList(filepath, filepathmeta, genre_list, exclude_re, type="stem", lang = 'english')
     # lemmatization works fine with pos tags
-    data_obj2 = TweetGenreList(filepath, filepathmeta, genre_list, exclude_re, type="lemma", lang = 'langdetect')
+    data_obj2 = TweetGenreList(filepath, filepathmeta, genre_list, exclude_re, type="lemma", lang = 'english')
     # Slight differences between lemmitization and no text adjustment before sentiment analysis
-    data_obj3 = TweetGenreList(filepath, filepathmeta, genre_list, exclude_re, type = None, lang = 'langdetect')
-
+    data_obj3 = TweetGenreList(filepath, filepathmeta, genre_list, exclude_re, type = None, lang = 'english')
 
 
