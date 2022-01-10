@@ -290,7 +290,7 @@ if __name__ == "__main__":
         'dubstep|dub step|dubs|dub|dubz(\W|\s)','rap(\W|\s)',
         'drum and bass|drumnbass|dnb|drum amp bass|d amp b|d b|d n b|drumandbass|dandb|drum n bass(\W|\s)',
         'grime(\W|\s)','drill(\W|\s)'])
-    filepath = "new.csv.17"
+    filepath = "tweet27.csv"
     filepathmeta = None
     exclude_re = "RT|out now|outnow|exclusive|new release|newrelease|now playing|nowplaying|official|COMMERCIAL &amp; TALK FREE"
     
